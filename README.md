@@ -9,11 +9,13 @@ Plugin geocoding para gvmapps
   Al nuevo botón, Se le pasará una funcion definida en el plugin 'handlerGeocodingOn' haciendo uso de registerPoint. Esta función, 
   cambiará 'show_geocoding_input' de false a true, y viciversa. De manera que con un rednderizado condicional, es posible mostrar o esconder
   el inputText del geocoding.
-
+  
+-----
 MODIFICACIONES EN src/custom/config/Con.js de gvMapps_Bombersdv_App: 
+
 Se añade la siguiente línea en config --map -- button_bar para incluir un nuevo botón en el mapa.
 
-{icon: 'search', bgcolor: '#ffffff', registerpoint: 'GEOCODING_ON_OFF'},
+    {icon: 'search', bgcolor: '#ffffff', registerpoint: 'GEOCODING_ON_OFF'},
 
 -----
 MODIFICACIONES EN EL gvMapps_Core 
@@ -22,16 +24,16 @@ MODIFICACIONES EN EL gvMapps_Core
 - Modificamos Map.js en 'gvmapps_core/componentes/organisms/
 
    //---------Dentro del constructor---------
-    (Añadimos nuevo state candidate que usaremos para añadir un marcador al mapa)
-    
-    this.state = {
-      mode: 'MODE_NORMAL_MAP',
-      mapReady: false,
-      command: null,
-      params: null,
-      //geocoding
-      candidate: {},
-    };
+    (Añadimos nuevo state 'candidate' que usaremos para añadir un marcador al mapa)
+
+      this.state = {
+        mode: 'MODE_NORMAL_MAP',
+        mapReady: false,
+        command: null,
+        params: null,
+        //geocoding
+        candidate: {},
+      };
 
      (Métodos que pasaremos a GeocodingInput como props)
      
@@ -79,3 +81,13 @@ MODIFICACIONES EN EL gvMapps_Core
           />
         );
       }
+  - Modificaciones dentro del render: 
+
+          {/*Añadimos componentes del geocoding*/}
+          {this.props.config.map.show_geocoding_input == true && this.getGeocoding()}
+          
+           {/*Se añade marcador si existe un candidato de búsqueda para el geocoding -- NO FUNCIONA
+              {this.state.candidate && this.addMarker(this.state.candidate)}
+           {this.clustered &&
+            this.addMarkerGeocoding(this.state.candidate)}
+          */}
