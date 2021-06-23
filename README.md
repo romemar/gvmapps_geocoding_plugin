@@ -21,15 +21,26 @@ MODIFICACIONES EN EL gvMapps_Core
 
 - Modificamos Map.js en 'gvmapps_core/componentes/organisms/
 
-   Dentro del constructor:
-     candidate: {}, (un nuevo state)
+   //---------Dentro del constructor---------
+    (Añadimos nuevo state candidate que usaremos para añadir un marcador al mapa)
+    
+    this.state = {
+      mode: 'MODE_NORMAL_MAP',
+      mapReady: false,
+      command: null,
+      params: null,
+      //geocoding
+      candidate: {},
+    };
 
      (Métodos que pasaremos a GeocodingInput como props)
-      this.goTo = this.goTo.bind(this); //método ya creado 
+     
+      this.goTo = this.goTo.bind(this);
       this.handler = this.handler.bind(this); 
 
   
      //-----------MÉTODOS_GEOCODING DENTRO DE LA CLASE MAP ----------
+     
       getGeocoding() {
         //if(this.props.config.map.show_geocoding_input == true){ <GeocodingInput goTo={this.goTo} handler={this.handler}/>
         let geocodingOn = this.props.config.map.show_geocoding_input
