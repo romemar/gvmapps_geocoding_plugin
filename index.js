@@ -25,6 +25,7 @@ import GvSIGOLService from '../../gvmapps_core/services/GvSIGOLService'
 import GeocodingSurface from './src/pages/GeocodingSurface'
 
 
+
 global.db = null
 global.location = null
 
@@ -69,7 +70,6 @@ getPluginTrans = (lang) => {
 const handlerGeocodingOn = (props) => {
     console.log('Dentro de handlerGeocodingOn')
     console.log(JSON.stringify(props.config.map.show_geocoding_input))
-    //console.log(JSON.stringify(props.config.map.props.updateSubProperty))
 
     if(props.config.map.show_geocoding_input == true){
         props.addSubProperty({key: 'map', subkey: 'show_geocoding_input', value: false})

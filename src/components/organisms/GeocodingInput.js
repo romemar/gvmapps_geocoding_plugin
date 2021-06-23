@@ -10,7 +10,6 @@
    Text,
    TouchableOpacity,
    TextInput,
-   Alert,
    FlatList,
    StyleSheet,
    Animated,
@@ -19,20 +18,18 @@
  
  const GeocodingInput = props => {
    const [searchKeyword, setSearchKeyword] = useState('');
-   const [searchResults, setSearchResults] = useState([]);
    const [isShowingResults, setIsShowingResults] = useState(false);
    const [gvSigUrl, setGvSigUrl] = useState(
      'https://bombers.gvsigonline.com/gvsigonline',
    ); // http://10.0.2.2/ --- localhost del emulador android---
-   const [proveedores, setProveedores] = useState([]);
    const [options, setOptions] = useState({});
    //---- const animated
    const [inputLength, setInputLength] = useState(new Animated.Value(0));
    //const [iconSearchPosition, setIconSearchPosition] = useState(new Animated.Value(0));
    //const [opacity, setOpacity] = useState(new Animated.Value(0));
    //const [geocodingOn, setGeocodingOn] = useState(false);
- 
-   const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+   
+   //const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
  
    //Condición para animar el inputText del geocoding
    if (props.geocodingOn == true) {
@@ -161,7 +158,6 @@
        let json = await response.json();
        console.log(json);
        let results = json.suggestions;
-       setSearchResults(results);
        setIsShowingResults(true);
  
        if (results.length > 0) {
@@ -301,17 +297,7 @@
    searchContainer: {
      height: 50,
    },
-   inputView: {
-     width: '100%',
-     height: 45,
-     borderRadius: 8,
-     paddingHorizontal: 10,
-     display: 'flex',
-     flexDirection: 'row',
-     alignItems: 'center',
-     position: 'absolute',
-     top: 80,
-   },
+   /*
    iconSearch: {
      position: 'absolute',
      marginHorizontal: 12,
@@ -332,6 +318,7 @@
      shadowOpacity: 0.2,
      elevation: 10,
    },
+   */
    autocompleteContainer: {
      zIndex: 1,
      top: 52,
